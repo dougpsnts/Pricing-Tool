@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="app.js" type="module" defer></script>
+    <link rel="stylesheet" href="style.css">
+    <title>Precificador</title>
+</head>
+<body>
+    <main>
+        <section> 
+            <h1>Precificador</h1>
+            <hr>
+            <form>
+                <fieldset id="firstFieldset" class="productArea">
+                    <label for="productName">Nome do produto:</label>
+                    <input type="text" id="productName" name="productName" placeholder="Ex: Coca-Cola 2L">
+                </fieldset>
+                <fieldset class="productArea">
+                   <label for="productPackQuantity">Quant. fardos do prod:</label>
+                <input type="number" name="productPackQuantity" id="productPackQuantity"> 
+                </fieldset>
+                <fieldset class="productArea">
+                    <label for="productUnitQuantity">Unidades por fardo:</label>
+                <input type="number" name="productUnitQuantity" id="productUnitQuantity">
+                </fieldset>                
+                <fieldset class="productArea">
+                    <label for="packPrice">Valor por fardo:</label>
+                <input type="number" name="packPrice" id="packPrice">
+                </fieldset>                
+                <fieldset>
+                    <label for="TotalNF">Valor Total da NF:</label>
+                    <input type="number" name="TotalNF" id="TotalNF">
+                </fieldset>
+                <fieldset>
+                   <label for="productsTotalPrice">Valor Total dos produtos:</label>
+                <input type="number" name="productsTotalPrice" id="productsTotalPrice"> 
+                </fieldset>               
+                <fieldset>
+                    <label for="percentual">Porcentagem:</label>
+                <input type="number" name="percentual" id="percentual">
+                </fieldset>                
+            </form>    
+
+            <button id="calcular">Adicionar Produto</button>
+        </section>
+        <aside> 
+            <h2>Produtos</h2>
+            <hr>
+            <ul id="productList">
+                <li><span class="product">Coca-Cola <br> 2 fardos</span><span class="exclude"> X </span></li>
+            </ul>
+            <button id="clearList">Limpar Lista</button>
+            <button id="clearList">Calcular</button>
+        </aside>
+        <article> 
+            <h2>Resultados:</h2>
+            <ul id="resultList">
+                <li>Diferença de Imposto: <span id="tax"></span></li>
+                <li>Preço por caixa: <span id="pricePerBox"></span></li>
+                <li>Preço unitário: <span id="unitPrice"></span></li>
+            </ul>
+        </article>
+    </main>
+</body>
+</html>
