@@ -5,8 +5,8 @@
 }
 body {
     font-family: Arial, sans-serif;
-    background-color: #1b1b1be0;
-    color: #f3f3f3;
+    background-color: #FBE5B0;
+    color: #333;
 }
 
 /* Areas */
@@ -44,7 +44,7 @@ article {
 }
 
 section, aside, article {
-    background-color: #473558c0;
+    background-color: #C5914B;
     border-radius: 1rem;
     padding: 20px;
     text-align: center;
@@ -83,19 +83,19 @@ section input {
     border: none;
     border-radius: 5px;
     background-color: #1b1b1b65;
-    color: #f3f3f3;
+    color: #FBE5B0;
     margin: .5rem;
     padding: 10px;
 }
 input:focus {
     outline: none;
-    border: 2px solid #473558c0;
+    border: 2px solid #41332cc0;
 }
 button {
-    background-color: #1b1b1be0;
+    background-color: #41332c;
     border: none;
     border-radius: 5px;
-    color: #f3f3f3;
+    color: #FBE5B0;
     cursor: pointer;
     display: block;
     margin: 5px auto;
