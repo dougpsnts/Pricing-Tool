@@ -3,29 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="app.js" type="module" defer></script>
+    <!-- <script src="app.js" type="module" defer></script> -->
     <link rel="stylesheet" href="style.css">
     <title>Precificador</title>
 </head>
 <body>
-    <main>
-        <section> 
-            <h1>Precificador</h1>
-            <hr>
+    <main class="workspace-container">
+        <section class="form-panel"> 
+            <h3>Adicionar Produto</h3>
             <form>
-                <fieldset id="firstFieldset" class="productArea">
+                <fieldset class="product-area">
                     <label for="productName">Nome do produto:</label>
                     <input type="text" id="productName" name="productName" placeholder="Ex: Coca-Cola 2L">
                 </fieldset>
-                <fieldset class="productArea">
+                <fieldset class="product-area">
                    <label for="productPackQuantity">Quant. fardos do prod:</label>
                 <input type="number" name="productPackQuantity" id="productPackQuantity"> 
                 </fieldset>
-                <fieldset class="productArea">
+                <fieldset class="product-area">
                     <label for="productUnitQuantity">Unidades por fardo:</label>
                 <input type="number" name="productUnitQuantity" id="productUnitQuantity">
                 </fieldset>                
-                <fieldset class="productArea">
+                <fieldset class="product-area">
                     <label for="packPrice">Valor por fardo:</label>
                 <input type="number" name="packPrice" id="packPrice">
                 </fieldset>                
@@ -43,25 +42,36 @@
                 </fieldset>                
             </form>    
 
-            <button id="calcular">Adicionar Produto</button>
+            <button id="addToListBtn" class="cta-button">Adicionar à Lista →</button>
         </section>
-        <aside> 
-            <h2>Produtos</h2>
-            <hr>
-            <ul id="productList">
-                <li><span class="product">Coca-Cola <br> 2 fardos</span><span class="exclude"> X </span></li>
-            </ul>
-            <button id="clearList">Limpar Lista</button>
-            <button id="clearList">Calcular</button>
-        </aside>
-        <article> 
-            <h2>Resultados:</h2>
-            <ul id="resultList">
-                <li>Diferença de Imposto: <span id="tax"></span></li>
-                <li>Preço por caixa: <span id="pricePerBox"></span></li>
-                <li>Preço unitário: <span id="unitPrice"></span></li>
-            </ul>
-        </article>
+        <section class="analysis-panel"> 
+            <h3>Análise Rápida</h3>
+            <div class="analysis-item">
+                <span>Diferença de Imposto</span>
+                <span class="analysis-value" id="diferencaImposto">R$ 0,00</span>
+            </div>
+            <div class="analysis-item">
+                <span>Preço por Caixa/Fardo</span>
+                <span class="analysis-value" id="precoCaixa">R$ 0,00</span>
+            </div>
+            <div class="analysis-item">
+                <span>Preço Unitário</span>
+                <span class="analysis-value" id="precoUnitario">R$ 0,00</span>
+            </div>
+        </section>
+        <section class="List-panel"> 
+            <h3>Resumo do Pedido</h3>
+            <div class="product-list-container">
+                <p class="empty-list-message">Nenhum produto adicionado ainda.</p>
+                <ul id="productList">
+                    <li class="product-item"><span class="product-item-details"><p class="product-name">Coca-Cola</p><p class="product-price">R$3,00</p></span><button class="remove-btn">X</button></li>
+                </ul>
+            </div>
+            <div class="list-footer">
+                <span>TOTAL GERAL</span>
+                <span id="grandTotal">R$ 0,00</span>
+            </div>
+        </section>
     </main>
 </body>
 </html>
