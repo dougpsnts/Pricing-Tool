@@ -17,7 +17,7 @@ body {
 }
 
 /* Panel standart styles */
-.form-panel, .analysis-panel, .List-panel {
+.form-panel, .analysis-panel, .list-panel {
     background-color: #C5914B;
     border-radius: 8px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
@@ -160,30 +160,31 @@ input::placeholder {
     margin-left: auto;
 }
 .list-footer {
+    border-top: 2px solid #eee;
+    background-color: #fff;
     display: flex;
     justify-content: space-between;
     font-size: 1.5rem;
     font-weight: bold;
     padding: 25px;
-    border-top: 2px solid #eee;
-    background-color: #fff;
+    width: 100%;
 }
 #grandTotal { color: #28a745; }
 
 
 /* Responsive Design */
-@media (max-width: 1200px) {
+@media (min-width: 769px) and (max-width: 1200px) {
     .workspace-container {
-        grid-template-columns: 1fr 1fr; /* Duas colunas em telas médias */
+        grid-template-columns: 1fr 1fr; /* Two collumns */
     }
     .list-panel {
-        grid-column: 1 / 3; /* A lista ocupa a largura toda na linha de baixo */
+        grid-column: 1 / 3; /* The list take all the row */
     }
 }
 
 @media (max-width: 768px) {
     .workspace-container {
-        grid-template-columns: 1fr; /* Uma coluna em telas pequenas */
+        grid-template-columns: 1fr; /* One collumn on smaller screens */
         height: auto;
         padding: 15px;
     }
