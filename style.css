@@ -60,7 +60,7 @@ fieldset input {
     margin-bottom: 5px;
     margin-left: 5px;
     padding: 10px;
-    width: 90%;
+    width: 98%;
 }
 input:focus {
     outline: #5c4033 solid;
@@ -77,9 +77,17 @@ input::placeholder {
     cursor: pointer;
     font-size: 1.1rem;
     font-weight: bold;
-    margin-top: auto;/* Pushes the button to the bottom of the form */
     padding: 15px;
     text-align: center;
+}
+.cta-button:hover {
+    background-color: #5c4033;
+}
+#saveNF{
+    margin: 10px 0 25px 0;
+}
+#addToListBtn {
+     margin-top: auto;/* Pushes the button to the bottom of the form */
 }
 
 /* Second column */
@@ -136,7 +144,7 @@ input::placeholder {
     padding: 15px 10px;
     background-color: #f8f9fa;
     border-radius: 5px;
-    margin-bottom: 10px;
+    margin: 10px 0px;
 }
 .product-item-details { 
     flex-grow: 1; 

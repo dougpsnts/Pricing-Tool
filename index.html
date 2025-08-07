@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- <script src="app.js" type="module" defer></script> -->
+    <script src="app.js" type="module" defer></script>
     <link rel="stylesheet" href="style.css">
     <title>Precificador</title>
 </head>
@@ -12,33 +12,36 @@
         <section class="form-panel"> 
             <h3>Adicionar Produto</h3>
             <form>
+                <fieldset class="NF-area">
+                    <label for="totalNF">Valor total da NF:</label>
+                    <input type="number" name="totalNF" id="totalNF">
+                </fieldset>
+                <fieldset class="NF-area">
+                   <label for="productsTotalPrice">Valor total dos produtos:</label>
+                <input type="number" name="productsTotalPrice" id="productsTotalPrice"> 
+                </fieldset>               
+                <fieldset class="NF-area">
+                   <label for="totalPackQuantity">Quant. Total de fardos:</label>
+                <input type="number" name="totalPackQuantity" id="totalPackQuantity"> 
+                </fieldset>
+                <fieldset class="NF-area">
+                    <label for="percentual">Porcentagem:</label>
+                <input type="number" name="percentual" id="percentual">
+                </fieldset> 
+            </form>
+            <button id="saveNF" class="cta-button">Salva NF ✓</button>               
+            <form>
                 <fieldset class="product-area">
                     <label for="productName">Nome do produto:</label>
                     <input type="text" id="productName" name="productName" placeholder="Ex: Coca-Cola 2L">
                 </fieldset>
                 <fieldset class="product-area">
-                   <label for="productPackQuantity">Quant. fardos do prod:</label>
-                <input type="number" name="productPackQuantity" id="productPackQuantity"> 
-                </fieldset>
-                <fieldset class="product-area">
                     <label for="productUnitQuantity">Unidades por fardo:</label>
-                <input type="number" name="productUnitQuantity" id="productUnitQuantity">
+                    <input type="number" name="productUnitQuantity" id="productUnitQuantity">
                 </fieldset>                
                 <fieldset class="product-area">
-                    <label for="packPrice">Valor por fardo:</label>
-                <input type="number" name="packPrice" id="packPrice">
-                </fieldset>                
-                <fieldset>
-                    <label for="TotalNF">Valor Total da NF:</label>
-                    <input type="number" name="TotalNF" id="TotalNF">
-                </fieldset>
-                <fieldset>
-                   <label for="productsTotalPrice">Valor Total dos produtos:</label>
-                <input type="number" name="productsTotalPrice" id="productsTotalPrice"> 
-                </fieldset>               
-                <fieldset>
-                    <label for="percentual">Porcentagem:</label>
-                <input type="number" name="percentual" id="percentual">
+                    <label for="packPrice">Valor total dos fardos:</label>
+                    <input type="number" name="packPrice" id="packPrice">
                 </fieldset>                
             </form>    
             <button id="addToListBtn" class="cta-button">Adicionar à Lista →</button>
@@ -50,18 +53,18 @@
                 <span class="analysis-value" id="taxDifference">R$ 0,00</span>
             </div>
             <div class="analysis-item">
-                <span>Preço por Caixa/Fardo</span>
-                <span class="analysis-value" id="newPackPrice">R$ 0,00</span>
+                <span>Quant. fardos adicionados</span>
+                <span class="analysis-value" id="newPackPrice">0</span>
             </div>
             <div class="analysis-item">
-                <span>Preço Unitário</span>
+                <span>Preço total adicionado</span>
                 <span class="analysis-value" id="newUnitPrice">R$ 0,00</span>
             </div>
         </section>
         <section class="list-panel"> 
-            <h3>Resumo do Pedido</h3>
+            <h3>Resumo de novos valores</h3>
             <div class="product-list-container">
-                <p class="empty-list-message">Nenhum produto adicionado ainda.</p>
+                <!-- <p class="empty-list-message">Nenhum produto adicionado ainda.</p> -->
                 <ul id="productList">
                     <li class="product-item"><span class="product-item-details"><p class="product-name">Coca-Cola</p><p class="product-price">R$3,00</p></span><button class="remove-btn">X</button></li>
                 </ul>
