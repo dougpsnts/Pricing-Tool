@@ -86,7 +86,7 @@ input::placeholder {
 #saveNF{
     margin: 10px 0 25px 0;
 }
-#addToListBtn {
+#addToListBtn{
      margin-top: auto;/* Pushes the button to the bottom of the form */
 }
 
@@ -166,6 +166,11 @@ input::placeholder {
     font-size: 1.2rem; 
     cursor: pointer;
     margin-left: auto;
+}
+#calcBtn{
+    width: 93%;
+    align-self: center;
+    margin: 25px;
 }
 .list-footer {
     border-top: 2px solid #eee;
