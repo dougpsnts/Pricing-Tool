@@ -1,19 +1,21 @@
 import { createProductItem } from "./Li.js";
 
+const calcBtn = document.getElementById("calcBtn")
 const products = [];
-let difTax = document.getElementById("taxDifference");
-let quantPac = 0;
-let totalPriceAdd = 0;
+let newNF = {}
+let taxDif = 0
+const taxDifference = document.getElementById("taxDifference");
+
 
 export function SaveNF(){
   const saveNFBtn = document.getElementById("saveNF");
 
   saveNFBtn.addEventListener("click", () =>{
-    const newNF = {
+    newNF = {
       totalNF: parseFloat(document.getElementById("totalNF").value),
       prodTotalPrice: parseFloat(document.getElementById("productsTotalPrice").value),
       packQuantity: parseFloat(document.getElementById("totalPackQuantity").value),
-      percentual: parseFloat(document.getElementById("percentual").value),
+      percentual: (parseFloat(document.getElementById("percentual").value) / 100) + 1,
     };
 
     function verificarInputs(newNF) {
@@ -24,11 +26,12 @@ export function SaveNF(){
 
     if (verificarInputs(newNF)) {
       console.log(newNF);
-      difTax.textContent = `R$ ${(newNF.totalNF - newNF.prodTotalPrice).toFixed(2)}`;
+      taxDif = (newNF.totalNF - newNF.prodTotalPrice).toFixed(2)
+      taxDifference.textContent = `R$ ${taxDif}`;
     } else {
       alert('Por favor, preencha todos os campos da NF.');
     }
-     return newNF;
+    return newNF;
   });
 }
 
@@ -39,8 +42,8 @@ export function AddToList(){
   addProductButton.addEventListener("click", () => {
     const newProduct = {
       name: document.getElementById("productName").value,
-      packPrice: document.getElementById("packPrice").value,
-      unitQuantity: document.getElementById("productUnitQuantity").value
+      packPrice: parseFloat(document.getElementById("packPrice").value),
+      unitQuantity: parseFloat(document.getElementById("productUnitQuantity").value)
     };
 
     if(newProduct.name.trim() === ''){
@@ -52,8 +55,6 @@ export function AddToList(){
 
     productList.appendChild(newProductLi);
 
-    
-
     products.push(newProduct);
 
     console.log(products);
@@ -61,5 +62,17 @@ export function AddToList(){
 }
 
 export function CalcNewPrice(){
-
+  calcBtn.addEventListener("click", () => {
+  const totalUnits = products.reduce((acc, product) => {
+  return acc + parseFloat(product.unitQuantity);
+}, 0 );
+  const productsWithNewPrice = products.map(product => {
+    const unitPrice = product.packPrice / product.unitQuantity;
+    const taxPerUnit = taxDif / totalUnits;
+    const newPrice = (unitPrice + taxPerUnit) * newNF.percentual;
+    return { ...product, newPrice: newPrice };
+  })
+console.log(totalUnits);
+console.log(productsWithNewPrice);
+});
 }
