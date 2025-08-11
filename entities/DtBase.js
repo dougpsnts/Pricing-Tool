@@ -1,4 +1,4 @@
-import { createProductItem } from "./Li.js";
+import { CreateProductItem, CreateP } from "./Li.js";
 
 let products = [];
 const calcBtn = document.getElementById("calcBtn")
@@ -19,13 +19,13 @@ export function SaveNF(){
       percentual: (parseFloat(document.getElementById("percentual").value) / 100) + 1,
     };
 
-    function verificarInputs(newNF) {
+    function VerificarInputs(newNF) {
     // The 'Object.values(newNF)' retorn an array with all objects values.
     // The '.every(value => value.trim() !== '')' checks if each array value isn't empty. 
     return Object.values(newNF).every(value => value !== '');
     };
 
-    if (verificarInputs(newNF)) {
+    if (VerificarInputs(newNF)) {
       console.log(newNF);
       taxDif = (newNF.totalNF - newNF.prodTotalPrice).toFixed(2)
       taxDifference.textContent = `R$ ${taxDif}`;
@@ -37,6 +37,7 @@ export function SaveNF(){
 }
 
 export function AddToList(){
+  let count = 0;
   const addProductButton = document.getElementById("addToListBtn");
   const productList = document.getElementById("productList");
   let accPackPrice = 0;
@@ -53,12 +54,13 @@ export function AddToList(){
         return;
     }
 
-    const newProductLi = createProductItem(newProduct);
+    const newProductLi = CreateProductItem(newProduct, count);
 
     productList.appendChild(newProductLi);
 
     products.push(newProduct);
-    excludeItem();
+    ExcludeItem();
+    count++;
 
     accPackPrice = accPackPrice + newProduct.packPrice;
     console.log(accPackPrice);
@@ -78,14 +80,18 @@ export function CalcNewPrice(){
     const unitPrice = product.packPrice / product.unitQuantity;
     const taxPerUnit = taxDif / totalUnits;
     const newPrice = (unitPrice + taxPerUnit) * newNF.percentual;
-    return { ...product, newPrice: newPrice };
+    return { ...product, newPrice: newPrice};
   })
+  productsWithNewPrice.forEach((product, index) => {
+  const li = document.querySelectorAll(".product-item-details")[index];
+  CreateP(product.newPrice.toFixed(2),li);
+});
 console.log(totalUnits);
 console.log(productsWithNewPrice);
 });
 }
 
-function excludeItem(){
+function ExcludeItem(){
   const ul = document.querySelector("ul"); 
   ul.addEventListener("click", (event) => { //using event delegation
     const btn = event.target.closest(".remove-btn");

@@ -22,7 +22,7 @@ export class Component {
     if (this.parent instanceof Component) {
       this.parent.getElement().append(this.#element);
     } else{
-        this.parent.append(this.#element);
+        document.querySelector(this.parent).append(this.#element);
     }
   }
 }
