@@ -1,10 +1,11 @@
 import { createProductItem } from "./Li.js";
 
-const calcBtn = document.getElementById("calcBtn")
 const products = [];
+const calcBtn = document.getElementById("calcBtn")
+const taxDifference = document.getElementById("taxDifference");
+const totalPriceAdded = document.getElementById("totalPriceAdded");
 let newNF = {}
 let taxDif = 0
-const taxDifference = document.getElementById("taxDifference");
 
 
 export function SaveNF(){
@@ -38,6 +39,7 @@ export function SaveNF(){
 export function AddToList(){
   const addProductButton = document.getElementById("addToListBtn");
   const productList = document.getElementById("productList");
+  let accPackPrice = 0;
 
   addProductButton.addEventListener("click", () => {
     const newProduct = {
@@ -56,6 +58,11 @@ export function AddToList(){
     productList.appendChild(newProductLi);
 
     products.push(newProduct);
+
+    accPackPrice = accPackPrice + newProduct.packPrice;
+    console.log(accPackPrice);
+
+    totalPriceAdded.textContent = "R$" + accPackPrice.toFixed(2);
 
     console.log(products);
   });
