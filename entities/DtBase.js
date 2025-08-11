@@ -1,11 +1,12 @@
 import { CreateProductItem, CreateP } from "./Li.js";
 
 let products = [];
+let newNF = {}
+let taxDif = 'R$ 0.00';
+const grandTotal = document.getElementById("grandTotal");
 const calcBtn = document.getElementById("calcBtn")
 const taxDifference = document.getElementById("taxDifference");
 const totalPriceAdded = document.getElementById("totalPriceAdded");
-let newNF = {}
-let taxDif = 0
 
 
 export function SaveNF(){
@@ -40,13 +41,16 @@ export function AddToList(){
   let count = 0;
   const addProductButton = document.getElementById("addToListBtn");
   const productList = document.getElementById("productList");
+  const nameInput = document.getElementById("productName");
+  const unitQuantityInput = document.getElementById("productUnitQuantity");
+  const packPriceInput = document.getElementById("packPrice");
   let accPackPrice = 0;
 
   addProductButton.addEventListener("click", () => {
     const newProduct = {
-      name: document.getElementById("productName").value,
-      packPrice: parseFloat(document.getElementById("packPrice").value),
-      unitQuantity: parseFloat(document.getElementById("productUnitQuantity").value)
+      name: nameInput.value,
+      unitQuantity: parseFloat(unitQuantityInput.value),
+      packPrice: parseFloat(packPriceInput.value)
     };
 
     if(newProduct.name.trim() === ''){
@@ -61,6 +65,11 @@ export function AddToList(){
     products.push(newProduct);
     ExcludeItem();
     count++;
+
+    //clear input fields
+    nameInput.value = ''
+    unitQuantityInput.value = ''
+    packPriceInput.value = ''
 
     accPackPrice = accPackPrice + newProduct.packPrice;
     console.log(accPackPrice);
@@ -83,11 +92,16 @@ export function CalcNewPrice(){
     return { ...product, newPrice: newPrice};
   })
   productsWithNewPrice.forEach((product, index) => {
-  const li = document.querySelectorAll(".product-item-details")[index];
-  CreateP(product.newPrice.toFixed(2),li);
-});
-console.log(totalUnits);
-console.log(productsWithNewPrice);
+    const li = document.querySelectorAll(".product-item-details")[index];
+    CreateP(product.newPrice.toFixed(2),li);
+  });
+  const newTotal = productsWithNewPrice.reduce((acc, product) => {
+    return acc + parseFloat(product.newPrice);
+  },0);  
+  grandTotal.textContent = "R$" + (newTotal.toFixed(2));
+  console.log(newTotal);
+  console.log(totalUnits);
+  console.log(productsWithNewPrice);
 });
 }
 
