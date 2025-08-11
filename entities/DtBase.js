@@ -1,6 +1,6 @@
 import { createProductItem } from "./Li.js";
 
-const products = [];
+let products = [];
 const calcBtn = document.getElementById("calcBtn")
 const taxDifference = document.getElementById("taxDifference");
 const totalPriceAdded = document.getElementById("totalPriceAdded");
@@ -58,6 +58,7 @@ export function AddToList(){
     productList.appendChild(newProductLi);
 
     products.push(newProduct);
+    excludeItem();
 
     accPackPrice = accPackPrice + newProduct.packPrice;
     console.log(accPackPrice);
@@ -82,4 +83,22 @@ export function CalcNewPrice(){
 console.log(totalUnits);
 console.log(productsWithNewPrice);
 });
+}
+
+function excludeItem(){
+  const ul = document.querySelector("ul"); 
+  ul.addEventListener("click", (event) => { //using event delegation
+    const btn = event.target.closest(".remove-btn");
+    if (!btn) return;
+
+    const li = btn.closest("li"); // Get the LI element that contains the clicked button
+    const lis = Array.from(ul.children); // Convert NodeList to Array
+    const index = lis.indexOf(li); // Find the index of the clicked LI
+
+    if (index !== -1) {
+      products = products.toSpliced(index, 1); // Remove the product from the array without mutating it giving a new array
+      li.remove(); // Remove the LI from the DOM
+      console.log(products);
+    }
+  });
 }
