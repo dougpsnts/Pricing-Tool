@@ -117,6 +117,7 @@ function ExcludeItem(){
 
     if (index !== -1) {
       products = products.toSpliced(index, 1); // Remove the product from the array without mutating it giving a new array
+      totalPriceAdded.textContent = "R$" + products.reduce((acc, product) => acc + product.packPrice, 0).toFixed(2);
       li.remove(); // Remove the LI from the DOM
       console.log(products);
     }
